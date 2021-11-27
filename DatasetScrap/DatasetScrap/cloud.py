@@ -8,9 +8,9 @@ from scrapy.selector import Selector
 def parse(response):
     print("pres runs")
     n=0
-    client = MongoClient()
-    db =
-    records =
+    client = MongoClient("mongodb+srv://togrzesik:<password>@cluster0.vyuku.mongodb.net/test")
+    db = client.get_default_database('weather')
+    records = db.data
 
     rows = Selector(response).xpath("//table[@class='mat-table cdk-table mat-sort ng-star-inserted']//tbody//tr")
     for row in rows:
@@ -24,8 +24,8 @@ def parse(response):
 
 class cloud:
     client = MongoClient()
-    db =
-    records =
+    db = client.get_default_database('weather')
+    records = db.data
 
     def input_item(records):
         new_item = {
