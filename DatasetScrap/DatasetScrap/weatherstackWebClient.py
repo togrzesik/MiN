@@ -1,5 +1,5 @@
 import requests
-
+import json
 
 class WeatherstackWebClient:
     def __init__(self):
