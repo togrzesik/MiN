@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from DatasetScrap.DatasetScrap.cloud import save_in_databases, find_highest_temp_in_hour, get_day_count, get_hour_count,\
-    get_lowest_temperature_in_hour_group_by_city, get_max_temp_group_by_city_and_month
-from DatasetScrap.DatasetScrap.mongo import Mongo
-from DatasetScrap.DatasetScrap.weatherstackWebClient import WeatherstackWebClient
+from Project.queries import save_in_databases, find_highest_temp_in_hour, get_day_count, get_hour_count,\
+    get_average_temperature_in_hour_group_by_city
+from Project.mongo import Mongo
+from Project.weatherstackWebClient import WeatherstackWebClient
 
 
 load_data = False
@@ -38,11 +38,8 @@ class App:
     def hour_count(self):
         self.__execute(get_hour_count)
 
-    def lowest_temperature_in_hour_group_by_city(self, hour):
-        self.__execute_with_param(get_lowest_temperature_in_hour_group_by_city, hour)
-
-    def max_temp_group_by_city_and_month(self):
-        self.__execute(get_max_temp_group_by_city_and_month)
+    def average_temperature_in_hour_group_by_city(self, hour):
+        self.__execute_with_param(get_average_temperature_in_hour_group_by_city, hour)
 
     def __execute(self, fun):
         for database in self.__databases:
@@ -64,4 +61,4 @@ if __name__ == "__main__":
     if load_data:
         print("loading data\n")
         app.get_and_save_historical_data()
-    app.max_temp_group_by_city_and_month()
+    app.average_temperature_in_hour_group_by_city(23)

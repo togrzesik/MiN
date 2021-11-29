@@ -32,7 +32,7 @@ def get_hour_count(database):
     return database.hourly_collection.find({}).count()
 
 
-def get_lowest_temperature_in_hour_group_by_city(database, hour):
+def get_average_temperature_in_hour_group_by_city(database, hour):
     x = database.hourly_collection.aggregate([{
         "$match": {"time": hour}}, {
         "$group": {"_id": {"city": "$city"},

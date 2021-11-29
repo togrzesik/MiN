@@ -1,11 +1,11 @@
 import requests
-import json
+
 
 class WeatherstackWebClient:
     def __init__(self):
         self.__address = "https://api.weatherstack.com/historical?access_key=750bee067c998111c49f4b6257731381&hourly=1&interval=1&query="
         self.__keys_to_take = ["time", "temperature", "wind_speed", "wind_degree", "wind_dir", "humidity", "pressure",
-                            "feelslike", "uv_index", "chanceofrain", "chanceofsnow", "chanceofthunder"]
+                               "feelslike", "uv_index", "chanceofrain", "chanceofsnow", "chanceofthunder"]
 
     def get_historical_data(self, city, year, month):
         days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
